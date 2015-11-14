@@ -1,5 +1,5 @@
 import expect from 'expect.js'
-import Debounce, { DEFAULT_DEBOUNCE_DURATION } from '../source/Debounce'
+import Debounce, { debounce, DEFAULT_DEBOUNCE_DURATION } from '../source/Debounce'
 import FakeTimers from '../vendor/fake-timers/FakeTimers'
 
 describe('Debounce', () => {
@@ -69,5 +69,38 @@ describe('Debounce', () => {
     timers.runTimersToTime(DEFAULT_DEBOUNCE_DURATION)
     expect(foo._debouncedByDefault).to.equal('baz')
     expect(foo._debouncedByDefaultCount).to.equal(2)
+  })
+
+  it('should clear any pending debounced operations', () => {
+    const foo = new Foo()
+    foo.debouncedByDefault('foo')
+    expect(foo._debouncedByDefault).to.equal(undefined)
+    foo.debouncedByDefault.clear()
+    timers.runTimersToTime(DEFAULT_DEBOUNCE_DURATION)
+    expect(foo._debouncedByDefault).to.equal(undefined)
+    expect(foo._debouncedByDefaultCount).to.equal(0)
+  })
+
+  it('should decorate a plain function (not a class method)', () => {
+    let funcValue
+    let funcCalls = 0
+
+    const debouncedFunction = debounce(
+      function func (value) {
+        funcValue = value
+        funcCalls++
+      }
+    )
+
+    debouncedFunction('foo')
+    debouncedFunction('bar')
+    expect(funcValue).to.equal(undefined)
+    expect(funcCalls).to.equal(0)
+    timers.runTimersToTime(DEFAULT_DEBOUNCE_DURATION - 1)
+    expect(funcValue).to.equal(undefined)
+    expect(funcCalls).to.equal(0)
+    timers.runTimersToTime(1)
+    expect(funcValue).to.equal('bar')
+    expect(funcCalls).to.equal(1)
   })
 })
