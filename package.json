@@ -1,6 +1,6 @@
 {
   "name": "debounce-decorator",
-  "description": "Decorator component for debouncing a class method",
+  "description": "Decorator component for debouncing class methods",
   "author": "Brian Vaughn",
   "user": "bvaughn",
   "version": "0.0.1",
