@@ -8,6 +8,8 @@ export default function outerDecorator (duration) {
   return function innerDecorator (target, key, descriptor) {
     return {
       get: function getter () {
+        const name = key + '-debounced'
+
         if (this[name]) {
           return this[name]
         } else {
