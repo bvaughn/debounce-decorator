@@ -1,6 +1,7 @@
 # Debounce decorator
 
-Debouncing is a common JavaScript pattern when listening to events like "keyup" or "keydown".
+Debouncing is a JavaScript pattern commonly used for rate limiting event handlers for keyboard or scroll events.
+Check out [this article](https://davidwalsh.name/javascript-debounce-function) by David Walsh for more background information.
 This library provides a decorator that you can use to debounce class methods.
 
 # Installation
