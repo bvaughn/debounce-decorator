@@ -1,6 +1,18 @@
 # Debounce decorator
 
-Debouncing is a common JavaScript pattern when listening to events like "keyup" or "keydown". This library provides a decorator that you can use to debounce class methods. For example:
+Debouncing is a common JavaScript pattern when listening to events like "keyup" or "keydown".
+This library provides a decorator that you can use to debounce class methods.
+
+# Installation
+
+Install this component using NPM like so:
+```bash
+npm install debounce-decorator --save-dev
+```
+
+# Usage
+
+Debounce class methods like so:
 
 ```javascript
 import Debounce from 'debounce-decorator'
@@ -17,7 +29,7 @@ class MyComponent {
 }
 ```
 
-Debounced functions also define a `clear` method that can be used to cancel any pending, debounced updates.
+Debounced functions also define a `clear` property that can be used to cancel any pending, debounced updates.
 
 
 ```javascript
@@ -51,13 +63,6 @@ const debouncedFunction = debounce(
     // ...
   }
 )
-```
-
-# Installation
-
-Install this component using NPM like so:
-```bash
-npm install debounce-decorator --save-dev
 ```
 
 # License
