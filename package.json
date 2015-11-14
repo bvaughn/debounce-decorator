@@ -3,7 +3,7 @@
   "description": "Decorator component for debouncing class methods",
   "author": "Brian Vaughn",
   "user": "bvaughn",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "test": "karma start",
     "tdd": "karma start --auto-watch --no-single-run",
