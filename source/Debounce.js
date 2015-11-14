@@ -16,12 +16,12 @@ export default function outerDecorator (duration) {
 export function debounce (method, duration = DEFAULT_DEBOUNCE_DURATION) {
   let timeoutId
 
-  function debounceWrapper () {
+  function debounceWrapper (...args) {
     debounceWrapper.clear()
 
     timeoutId = setTimeout(() => {
       timeoutId = null
-      method.apply(this, arguments)
+      method.apply(this, args)
     }, duration)
   }
 
