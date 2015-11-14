@@ -6,9 +6,21 @@ export const DEFAULT_DEBOUNCE_DURATION = 500
 /** Decorates a class method so that it is debounced by the specified duration */
 export default function outerDecorator (duration) {
   return function innerDecorator (target, key, descriptor) {
-    descriptor.value = debounce(descriptor.value, duration)
+    return {
+      get: function getter () {
+        if (this[name]) {
+          return this[name]
+        } else {
+          const newDescriptor = { configurable: true }
+          newDescriptor.value = debounce(descriptor.value, duration)
 
-    return descriptor
+          // Attach this function to the instance (not the class)
+          Object.defineProperty(this, name, newDescriptor)
+
+          return newDescriptor.value
+        }
+      }
+    }
   }
 }
 
