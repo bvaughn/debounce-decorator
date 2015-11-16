@@ -7,20 +7,17 @@ export const DEFAULT_DEBOUNCE_DURATION = 500
 export default function outerDecorator (duration) {
   return function innerDecorator (target, key, descriptor) {
     return {
+      configurable: true,
+      enumerable: descriptor.enumerable,
       get: function getter () {
-        const name = key + '-debounced'
+        // Attach this function to the instance (not the class)
+        Object.defineProperty(this, key, {
+          configurable: true,
+          enumerable: descriptor.enumerable,
+          value: debounce(descriptor.value, duration)
+        })
 
-        if (this[name]) {
-          return this[name]
-        } else {
-          const newDescriptor = { configurable: true }
-          newDescriptor.value = debounce(descriptor.value, duration)
-
-          // Attach this function to the instance (not the class)
-          Object.defineProperty(this, name, newDescriptor)
-
-          return newDescriptor.value
-        }
+        return this[key]
       }
     }
   }
