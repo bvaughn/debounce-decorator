@@ -68,4 +68,4 @@ const debouncedFunction = debounce(
 
 # License
 
-*react-component-boilerplate* is available under the MIT License.
+*debounce-decorator* is available under the MIT License.
