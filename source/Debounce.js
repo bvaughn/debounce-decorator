@@ -11,10 +11,11 @@ export default function outerDecorator (duration) {
       enumerable: descriptor.enumerable,
       get: function getter () {
         // Attach this function to the instance (not the class)
+        var fn = typeof descriptor.initializer === 'function' ? descriptor.initializer.call(this) : undefined;
         Object.defineProperty(this, key, {
           configurable: true,
           enumerable: descriptor.enumerable,
-          value: debounce(descriptor.value, duration)
+          value: debounce(descriptor.value || fn, duration)
         })
 
         return this[key]
