@@ -7,9 +7,6 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import Clean from 'clean-webpack-plugin';
 import merge from 'webpack-merge';
-import React from 'react';
-import ReactDOM from 'react-dom/server';
-import MTRC from 'markdown-to-react-components';
 
 import pkg from './package.json';
 
@@ -89,14 +86,7 @@ const distCommon = {
     library: config.library
   },
   entry: config.paths.source,
-  externals: {
-    'react': {
-        commonjs: 'react',
-        commonjs2: 'react',
-        amd: 'React',
-        root: 'React'
-    }
-  },
+  externals: {},
   module: {
     loaders: [
       {
