@@ -3,11 +3,11 @@
   "description": "Decorator component for debouncing class methods",
   "author": "Brian Vaughn",
   "user": "bvaughn",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "scripts": {
     "test": "karma start",
     "tdd": "karma start --auto-watch --no-single-run",
-    "dist": "babel ./source --out-dir ./dist-modules",
+    "dist": "babel ./source --out-dir ./dist",
     "lint": "standard",
     "preversion": "npm run test && npm run lint && npm run dist && npm run dist-min && git commit --allow-empty -am \"Update dist\"",
     "prepublish": "npm run dist"
