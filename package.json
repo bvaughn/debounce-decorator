@@ -7,15 +7,16 @@
   "scripts": {
     "test": "karma start",
     "tdd": "karma start --auto-watch --no-single-run",
-    "dist": "webpack --display-error-details",
-    "dist-min": "webpack",
-    "dist-modules": "babel ./source --out-dir ./dist-modules",
+    "dist": "babel ./source --out-dir ./dist-modules",
     "lint": "standard",
     "preversion": "npm run test && npm run lint && npm run dist && npm run dist-min && git commit --allow-empty -am \"Update dist\"",
-    "prepublish": "npm run dist-modules"
+    "prepublish": "npm run dist"
   },
-  "main": "dist-modules",
+  "main": "dist",
   "dependencies": {},
+  "files": [
+    "dist"
+  ],
   "standard": {
     "parser": "babel-eslint",
     "ignore": [

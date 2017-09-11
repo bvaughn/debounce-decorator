@@ -1,4 +1,5 @@
 'use strict';
+
 import fs from 'fs';
 import path from 'path';
 
@@ -19,8 +20,6 @@ const config = {
     tests: path.join(ROOT_PATH, 'tests'),
     vendor: path.join(ROOT_PATH, 'vendor')
   },
-  filename: 'boilerplate',
-  library: 'Boilerplate'
 };
 
 process.env.BABEL_ENV = TARGET;
